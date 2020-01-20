@@ -19,6 +19,4 @@ xrefs of 401434 ("definitely don't wanna be here") indicate there should be 7 le
 
 First letter was found this way: 70(word's address (or maybe first letter's?) - address which was set to 1) xor 54 ('T') = 24 ('$', the letter I assume is correct).
 
------End of day 2.
-
 2nd letter: xor('g', letter) = xor(BA, A8)
