@@ -1,0 +1,2 @@
+must have 16 or more letters/digits
+run in powershell using ./keygenmme.exe

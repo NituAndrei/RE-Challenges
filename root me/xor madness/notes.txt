@@ -1,0 +1,24 @@
+pass?: $uC3sS
+
+first letter:
+
+	a) eax should point to 19FD04 at 4010F7, possible only if the first letter is '$'
+	
+	explanation:
+		1. instructions 4010C0 to 4010CC do the following: first_letter_introduced xor 'T' (function 1)
+		
+		2. 4010D0 ("word's stack address - 100 is loaded in eax") sets eax to an address in the stack which I assume is free (*word - 100), then 4010D2 does eax xor ebx (ebx contains the difference found at function 1) which it then memorizes in edx for future use (see 4) (if first letter = '$' then edx = 19FD04)
+		
+		3. between 4010E0 - 4010F2 ("19FD04 contains 1") the program sets eax to address 19FD04, which it then sets to 1
+		
+		4. 4010F5 to 4010FD: sets eax = edx (edx had it's value last changed at step 2), then sets edx = to the value at address eax (if letter is '$', eax = 19FD04 and edx = 1)
+		
+		This leads me to believe that 19FD04 should be pointed to by edx in order for "mul dl" at 4014B2 to point to a useful part of the program (which would be 40112D). For this to happen, the first letter should be '$'.
+
+xrefs of 401434 ("definitely don't wanna be here") indicate there should be 7 letters, as the code around the xrefs follows a similar pattern to the one i analysed to obtain the first letter. Note: 
+
+First letter was found this way: 70(word's address (or maybe first letter's?) - address which was set to 1) xor 54 ('T') = 24 ('$', the letter I assume is correct).
+
+-----End of day 2.
+
+2nd letter: xor('g', letter) = xor(BA, A8)
